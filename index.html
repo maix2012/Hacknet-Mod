@@ -1,254 +1,60 @@
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="_0"></a>你的第一个端口破解器</h1>
-<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="_1"></a>一、如何使用模版</h2>
-<p class="has-line-data" data-line-start="2" data-line-end="3">打开你的解决方案后，你将看到如下内容</p>
-<pre><code class="has-line-data" data-line-start="4" data-line-end="23" class="language-cs"><span class="hljs-keyword">using</span> BepInEx;
-<span class="hljs-keyword">using</span> BepInEx.Hacknet;
-
-<span class="hljs-keyword">namespace</span> <span class="hljs-title">HacknetPluginTemplate</span>;
-
-[BepInPlugin(ModGUID, ModName, ModVer)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HacknetPluginTemplate</span> : <span class="hljs-title">HacknetPlugin</span>
-{
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.Windows10CE.Template"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"If you leave these the same, I will kill you."</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)
-    </span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-    }
-}
-
-</code></pre>
-<p class="has-line-data" data-line-start="23" data-line-end="24">你需要修改其中的 <strong>MODGUID</strong> <strong>ModName</strong> <strong>ModVer</strong>和开头的类名，同时添加一些引用库这里我提供了一个示例：</p>
-<pre><code class="has-line-data" data-line-start="25" data-line-end="50" class="language-cs"><span class="hljs-keyword">using</span> BepInEx;
-<span class="hljs-keyword">using</span> BepInEx.Hacknet;
-<span class="hljs-keyword">using</span> Pathfinder;
-<span class="hljs-keyword">using</span> Hacknet;
-
-<span class="hljs-keyword">namespace</span> <span class="hljs-title">ASimpleMod</span>;<span class="hljs-comment">//命名空间，没啥用，可以不写。写了记得在跨文档使用函数的时候using你的命名空间。</span>
-
-[BepInPlugin(ModGUID, ModName, ModVer)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestMod</span> : <span class="hljs-title">HacknetPlugin</span>
-{
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.whydoyouthinksomeonewillfoundthis.test"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"TestMod"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)<span class="hljs-comment">//后文我们会简称为 “主文件的Load函数”</span>
-    </span>{
-        
-        Console.ForegroundColor = ConsoleColor.Cyan;<span class="hljs-comment">//设置颜色</span>
-        Console.WriteLine(<span class="hljs-string">"TestMod Load Finished!"</span>);<span class="hljs-comment">//cmd终端输出文字</span>
-        Console.ResetColor();<span class="hljs-comment">//重置颜色</span>
-        os.write(<span class="hljs-string">"HERE!"</span>)
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-    }
-}
-</code></pre>
-<p class="has-line-data" data-line-start="50" data-line-end="51">按下CTRL+SHIFT+B组合按键观察控制台输出，你就可以在这个路径下找到编译好的mod文件了（.dll）</p>
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="_0"></a>开始</h1>
+<h3 class="code-line" data-line-start=1 data-line-end=2 ><a id="_Hacknetmod__1"></a>欢迎来到 Hacknet-mod 文档库！</h3>
+<h3 class="code-line" data-line-start=3 data-line-end=4 ><a id="_Hacknetmod_3"></a>本文档库将帮助你快速上手 Hacknet-mod，并提供详细的教程和使用说明。</h3>
+<h2 class="code-line" data-line-start=4 data-line-end=5 ><a id="_4"></a>一、我需要准备什么？</h2>
+<hr>
 <ul>
-<li class="has-line-data" data-line-start="52" data-line-end="54"><strong>.\bin\Debug\net472</strong></li>
+<li class="has-line-data" data-line-start="6" data-line-end="7">
+<h3 class="code-line" data-line-start=6 data-line-end=7 ><a id="1Microsoft_Visual_Studio_2022net_6"></a>1.一台安装了Microsoft Visual Studio 2022的电脑和.net环境</h3>
+</li>
+<li class="has-line-data" data-line-start="7" data-line-end="8">
+<h3 class="code-line" data-line-start=7 data-line-end=8 ><a id="2DLCPathfinder_7"></a>2.拥有DLC+已经安装的Pathfinder</h3>
+</li>
+<li class="has-line-data" data-line-start="8" data-line-end="9">
+<h3 class="code-line" data-line-start=8 data-line-end=9 ><a id="3Cpythoncjava_8"></a>3.一定的编程基础知识（最好是C#的，python需要过渡，c++和java问题不大）</h3>
+</li>
+<li class="has-line-data" data-line-start="9" data-line-end="10">
+<h3 class="code-line" data-line-start=9 data-line-end=10 ><a id="4_9"></a>4.耐心</h3>
+</li>
 </ul>
-<p class="has-line-data" data-line-start="54" data-line-end="55">现在，复制这个dll文件到你的测试拓展下面，新建一个文件夹命名为plugins然后把你的dll放进去。</p>
-<p class="has-line-data" data-line-start="56" data-line-end="57">运行HacknetPathfinder.exe并选择你的拓展打开，你应该就能看见你的Hacknet打开的CMD终端输出了一行<strong>TestMod Load Finished!</strong></p>
-<p class="has-line-data" data-line-start="58" data-line-end="59">游戏内终端输出了一行<strong>HERE!</strong></p>
-<h2 class="code-line" data-line-start=60 data-line-end=61 ><a id="EXE_60"></a>二、你的第一个EXE和自定义端口</h2>
-<p class="has-line-data" data-line-start="61" data-line-end="62">PS：由于篇幅有限，我们只会对需要了解的C#语法进行解释，剩余部分不做过多展开。</p>
-<h3 class="code-line" data-line-start=62 data-line-end=63 ><a id="1EXE_62"></a>1.注册端口和EXE</h3>
-<p class="has-line-data" data-line-start="63" data-line-end="64">按下<strong>CTRL+SHIFT+A</strong>新建一个.cs文件，删除全部内容。然后复制粘贴头部using开始。</p>
-<p class="has-line-data" data-line-start="65" data-line-end="67">(虽然看起来臃肿，但是至少不会因为少个using多找一次bug<br>
-导致红温。)</p>
-<pre><code class="has-line-data" data-line-start="68" data-line-end="88" class="language-csharp"><span class="hljs-keyword">using</span> BepInEx;
-<span class="hljs-keyword">using</span> HarmonyLib;
-<span class="hljs-keyword">using</span> Hacknet;
-<span class="hljs-keyword">using</span> Microsoft.Xna.Framework;
-<span class="hljs-keyword">using</span> Microsoft.Xna.Framework.Graphics;
-<span class="hljs-keyword">using</span> Pathfinder.Action;
-<span class="hljs-keyword">using</span> Pathfinder.Administrator;
-<span class="hljs-keyword">using</span> Pathfinder.Util;
-<span class="hljs-keyword">using</span> Pathfinder.Daemon;
-<span class="hljs-keyword">using</span> Pathfinder.GUI;
-<span class="hljs-keyword">using</span> Pathfinder.Mission;
-<span class="hljs-keyword">using</span> Pathfinder.Util.XML;
-<span class="hljs-keyword">using</span> System;
-<span class="hljs-keyword">using</span> System.IO;
-<span class="hljs-keyword">using</span> System.Collections.Generic;
-<span class="hljs-keyword">using</span> Pathfinder;
-<span class="hljs-keyword">using</span> Hacknet.Extensions;
-<span class="hljs-keyword">using</span> BepInEx.Hacknet;
-<span class="hljs-keyword">using</span> System.Diagnostics;
-</code></pre>
-<p class="has-line-data" data-line-start="89" data-line-end="90">通过修改主文件Load函数，注册一个端口和一个EXE</p>
-<pre><code class="has-line-data" data-line-start="91" data-line-end="118" class="language-csharp"><span class="hljs-keyword">using</span> BepInEx;
-<span class="hljs-keyword">using</span> BepInEx.Hacknet;
-<span class="hljs-keyword">using</span> Pathfinder;
-<span class="hljs-keyword">using</span> Hacknet;
-
-<span class="hljs-keyword">namespace</span> <span class="hljs-title">ASimpleMod</span>;
-
-[BepInPlugin(ModGUID, ModName, ModVer)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestMod</span> : <span class="hljs-title">HacknetPlugin</span>
-{
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.whydoyouthinksomeonewillfoundthis.test"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"TestMod"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)
-    </span>{
-        
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine(<span class="hljs-string">"TestMod Load Finished!"</span>);
-        Console.ResetColor();<span class="hljs-comment">//重置颜色</span>
-        Pathfinder.Port.PortManager.RegisterPort(<span class="hljs-string">"EntechPort"</span>,<span class="hljs-string">"Entech"</span>,<span class="hljs-string">"1270"</span>)<span class="hljs-comment">//协议，probe界面显示的名称，端口号</span>
-        Pathfinder.Executable.ExecutableManager.RegisterExecutable&lt;EntechPortExploit&gt;(<span class="hljs-string">"#EnTechPortExploit#"</span>);<span class="hljs-comment">//&lt;&gt;内部填写你的函数名，后面的是自替换符。</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-    }
-}
-
-</code></pre>
-<p class="has-line-data" data-line-start="120" data-line-end="121">在新建的文件中添加如下内容定义一个EXE</p>
-<pre><code class="has-line-data" data-line-start="123" data-line-end="171" class="language-csharp">using BepInEx;
-using HarmonyLib;
-using Hacknet;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Action;
-using Pathfinder.Administrator;
-using Pathfinder.Util;
-using Pathfinder.Daemon;
-using Pathfinder.GUI;
-using Pathfinder.Mission;
-using Pathfinder.Util.XML;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using Pathfinder;
-using Hacknet.Extensions;
-using BepInEx.Hacknet;
-using System.Diagnostics;
-public class TestExecutable : Pathfinder.Executable.BaseExecutable
-{
-    public EntechPortExploit(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) {
-        this.ramCost = 200;//你的内存占用
-        this.IdentifierName = "WEBPORT INJECTOR";//你的程序在ram栏显示的名称
-        //输入this.查看更多可定义的项目
-    }
-
-    public override void LoadContent()//首次执行后触发的内容
-    {
-        base.LoadContent();
-    }
-
-    public override void Draw(float t)//绘制程序窗口
-    {
-        base.Draw(t);
-        drawTarget();
-        drawOutline();
-        
-    }
-
-    private float lifetime = 0f;
-    public override void Update(float t)//循环触发（每帧）
-    {
-        base.Update(t);
-        lifetime += t;
-    }
-}
-</code></pre>
-<h3 class="code-line" data-line-start=171 data-line-end=172 ><a id="2EXE_171"></a>2.编写EXE功能</h3>
-<p class="has-line-data" data-line-start="172" data-line-end="173">首先，我们需要设计一个好他的底层代码逻辑。</p>
-<p class="has-line-data" data-line-start="174" data-line-end="175">一个端口破解器理论上的过程应该是这样子的：</p>
-<p class="has-line-data" data-line-start="176" data-line-end="177"><strong>运行EXE-&gt;检测是否有该端口并获取端口号&amp;检查是否提供了正确的端口号-&gt;检查是否需要额外的要求（如额外端口破解需求）-&gt;花里胡哨的动画特效-&gt;打开端口-&gt;自动退出/手动Kill/保持运行</strong></p>
-<p class="has-line-data" data-line-start="178" data-line-end="179">那么，我们先不管那些花里胡哨的动画和什么额外的端口需求和整活效果（比如SSL需要其他端口开启，TempestGadgets的Sig32破解器会随机打开或者关闭端口或防火墙或代理），我们先做最基础的实现。</p>
+<hr>
+<h2 class="code-line" data-line-start=11 data-line-end=12 ><a id="_11"></a>二、开始配置环境</h2>
 <ul>
-<li class="has-line-data" data-line-start="180" data-line-end="181">1.消耗时间设置为20</li>
-<li class="has-line-data" data-line-start="181" data-line-end="182">2.exe在ram栏会显示进度</li>
-<li class="has-line-data" data-line-start="182" data-line-end="184">3.自动退出</li>
+<li class="has-line-data" data-line-start="12" data-line-end="13">
+<h3 class="code-line" data-line-start=12 data-line-end=13 ><a id="1Visual_Studio_2022NET_45_12"></a>1.先前往官网下载符合电脑规格的Visual Studio <a href="http://xn--2022-321g.NET">2022和.NET</a> 4.5</h3>
+</li>
 </ul>
-<p class="has-line-data" data-line-start="184" data-line-end="185">首先，对于消耗时间我们在 <strong>Update()</strong> 中循环检测lifetime。然后同时实时更新 <strong>Draw()</strong> 内部的绘制倒计时。最后开启端口。</p>
-<pre><code class="has-line-data" data-line-start="186" data-line-end="268" class="language-csharp">using BepInEx;
-using HarmonyLib;
-using Hacknet;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Action;
-using Pathfinder.Administrator;
-using Pathfinder.Util;
-using Pathfinder.Daemon;
-using Pathfinder.GUI;
-using Pathfinder.Mission;
-using Pathfinder.Util.XML;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using Pathfinder;
-using Hacknet.Extensions;
-using BepInEx.Hacknet;
-using System.Diagnostics;
-public class TestExecutable : Pathfinder.Executable.BaseExecutable
-{
-    private Computer targetComputer;//定义一个用于存储或者说代指当前连接节点的变量
-    private int netPort;//定义一个用来存储端口（号）的变量
-    private const int needtime = 5f; // 将破解需要的时间存储在常量中
-    private float time = 0f; // 用于跟踪已经过去的时间
-    public TestExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) {
-        this.ramCost = 200;//你的内存占用
-        this.IdentifierName = "WEBPORT INJECTOR";//你的程序在ram栏显示的名称
-        //输入this.查看更多可定义的项目
-    }
-
-    public override void LoadContent()//首次执行后触发的内容
-    {
-        base.LoadContent();
-        targetComputer = (os.connectedComp != null) ? os.connectedComp : os.thisComputer;//人话：目标计算机=（如果你现在连计算机了）获取当前连接的计算机 不然 就这个电脑了。
-        if (targetComputer == null)//万一真没连怎么办呢？
-        {
-            os.write("ERROR: Target computer not found!");//没找到节点
-            needsRemoval = true;//直接消失
-            return;//返回
-        }
-        netPort = targetComputer.GetDisplayPortNumberFromCodePort(1270);//从目标计算机上得到端口号为1270的端口
-        if (Args.Length &lt; 2 || !Int32.TryParse(Args[1], out int port) || port != netPort)
-        /*这个条件在以下任一情况下会返回 true：
-
-          参数不足（少于2个）
-          第二个参数不是有效数字
-          端口号与期望值不匹配
-        （索引为EXENAME(0号位置) 1270（1号位置））
-        */
-        {
-            os.write("ERROR FOUND!Target Port is Closed or Missing!");//没找到你说的端口
-            needsRemoval = true;//直接消失
-            return;
-        }
-    }
-
-    public override void Draw(float t)//你觉得呢？
-    {
-        base.Draw(t);
-        drawTarget();
-        drawOutline();
-        Vector2 centerpos = new Vector2(bounds.width / 2, bounds.height / 2); // 计算窗口中心位置
-        string progressText = $"NEEDTIME {time}" // 显示剩余时间
-    }
-
-    private float lifetime = 0f;
-    public override void Update(float t)//循环触发（每帧）
-    {
-        base.Update(t);
-        lifetime += t;
-        if (lifetime &gt;= 0.1f)
-        {
-          time += lifetime;
-          lifetime = 0f;
-          
-        }
-    }
-    }
-
+<p class="has-line-data" data-line-start="13" data-line-end="15"><a href="%22https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&amp;channel=Release&amp;version=VS2022&amp;source=VSLandingPage&amp;cid=2030&amp;passive=false%22">VS 2022</a> <br>
+<a href="%22https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net45-web-installer%22">.NET 4.5</a></p>
+<ul>
+<li class="has-line-data" data-line-start="15" data-line-end="16">
+<h3 class="code-line" data-line-start=15 data-line-end=16 ><a id="2_15"></a>2.下载这个模版完成准备工作</h3>
+</li>
+</ul>
+<p class="has-line-data" data-line-start="16" data-line-end="17"><a href="%22https://github.com/Windows10CE/HacknetPluginTemplate%22">模版</a></p>
+<ul>
+<li class="has-line-data" data-line-start="17" data-line-end="18">
+<h3 class="code-line" data-line-start=17 data-line-end=18 ><a id="3sln_17"></a>3.首先用记事本打开模版的.sln解决方案文件你会看到如下内容</h3>
+</li>
+</ul>
+<pre><code class="has-line-data" data-line-start="19" data-line-end="37">﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project(&quot;{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}&quot;) = &quot;HacknetPluginTemplate&quot;, &quot;HacknetPluginTemplate.csproj&quot;, &quot;{8F66B2F8-F985-4B27-ABAD-42E9CD52B911}&quot;
+EndProject
+Global
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {8F66B2F8-F985-4B27-ABAD-42E9CD52B911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {8F66B2F8-F985-4B27-ABAD-42E9CD52B911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {8F66B2F8-F985-4B27-ABAD-42E9CD52B911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {8F66B2F8-F985-4B27-ABAD-42E9CD52B911}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+EndGlobal
 
 </code></pre>
-<p class="has-line-data" data-line-start="268" data-line-end="269">现在，按下<strong>CTRL+SHIFT+B</strong>编译，然后找到老地方的dll替换掉你拓展的第一次编译的dll。</p>
-<p class="has-line-data" data-line-start="270" data-line-end="271">打开你的拓展的一个节点，然后在端口处添加你1270端口，并在bin里写上#EnTechPortExploit#，打开游戏运行破解器，你就可以看见效果了。</p>
-<p class="has-line-data" data-line-start="272" data-line-end="273">（Tips：在快捷方式后面空格并添加字段使用参数启动-enabledebug -enablefc -allowextpublish就可以直接使用fh快速破解节点，使用dscan 节点ID 显示节点。）</p>
+<h4 class="code-line" data-line-start=37 data-line-end=38 ><a id="_HacknetPluginTemplate_HacknetPluginTemplatecsprojcsproj_37"></a>修改其中的 <strong>HacknetPluginTemplate</strong>和 <strong>HacknetPluginTemplate.csproj</strong>分别为你的模组名和你改名后的.csproj文件名并保存。</h4>
+<h4 class="code-line" data-line-start=38 data-line-end=39 ><a id="csprojsln_38"></a>现在，重命名.csproj文件为你修改后的文件名然后打开解决方案文件（.sln）。</h4>
+<h1 class="code-line" data-line-start=39 data-line-end=40 ><a id="mod_39"></a>到这里，恭喜你，你已经完成了最麻烦的部分，接下来就是愉快的mod开发过程了。</h1>
