@@ -12,10 +12,10 @@
 -------------------
 ## 二、开始配置环境
 - ### 1.先前往官网下载符合电脑规格的Visual Studio 2022和.NET 4.5
-[VS 2022]("https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false") \
-[.NET 4.5]("https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net45-web-installer")
+[VS 2022](https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false) \
+[.NET 4.5](https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net45-web-installer)
 - ### 2.下载这个模版完成准备工作
-[模版]("https://github.com/Windows10CE/HacknetPluginTemplate")
+[模版](https://github.com/Windows10CE/HacknetPluginTemplate)
 - ### 3.首先用记事本打开模版的.sln解决方案文件你会看到如下内容
 ```
 ﻿
@@ -40,4 +40,4 @@ EndGlobal
 #### 现在，重命名.csproj文件为你修改后的文件名然后打开解决方案文件（.sln）。
 # 到这里，恭喜你，你已经完成了最麻烦的部分，接下来就是愉快的mod开发过程了。
 #### 点击这里开始你的第一个破解器开发吧！
-[你的第一个破解器]("https://github.com/maix2012/Hacknet-Mod/edit/main/README.md")
+[你的第一个破解器](https://github.com/maix2012/Hacknet-Mod/edit/main/README.md)
