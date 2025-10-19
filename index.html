@@ -2,13 +2,230 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Markdown编辑器</title>
-    <!-- 1. 引入 marked.js -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯JavaScript Markdown预览器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+        }
+        
+        @media (min-width: 768px) {
+            .editor-container {
+                flex-direction: row;
+            }
+        }
+        
+        .editor-panel {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #e1e4e8;
+            overflow: auto;
+        }
+        
+        #markdown-input {
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            border: none;
+            resize: none;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        #markdown-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #3498db;
+        }
+        
+        #preview {
+            padding: 15px;
+            overflow: auto;
+            background-color: white;
+            border-radius: 5px;
+        }
+        
+        /* Markdown样式 */
+        #preview h1, #preview h2, #preview h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.3em;
+        }
+        
+        #preview h1 { font-size: 2em; }
+        #preview h2 { font-size: 1.7em; }
+        #preview h3 { font-size: 1.4em; }
+        
+        #preview p {
+            margin-bottom: 1em;
+        }
+        
+        #preview strong {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        #preview em {
+            font-style: italic;
+            color: #3498db;
+        }
+        
+        #preview ul, #preview ol {
+            margin-left: 20px;
+            margin-bottom: 1em;
+        }
+        
+        #preview li {
+            margin-bottom: 0.5em;
+        }
+        
+        #preview code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        #preview pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+            margin: 1em 0;
+        }
+        
+        #preview blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin: 1em 0;
+            color: #7f8c8d;
+        }
+        
+        #preview a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        
+        #preview a:hover {
+            text-decoration: underline;
+        }
+        
+        #preview img {
+            max-width: 100%;
+            margin: 1em 0;
+            border-radius: 5px;
+        }
+        
+        .panel-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .panel-title::before {
+            content: "•";
+            margin-right: 8px;
+            color: #3498db;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e1e4e8, transparent);
+            margin: 10px 0;
+        }
+        
+        .help-text {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .help-text h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .help-text ul {
+            margin-left: 20px;
+        }
+        
+        .help-text li {
+            margin-bottom: 8px;
+        }
+        
+        .help-text code {
+            background-color: #e1e4e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <!-- 2. 编写页面结构 -->
-    <textarea id="markdown-input" style="width:100%; height:200px;">
+    <div class="container">
+        <header>
+            <h1>纯JavaScript Markdown预览器</h1>
+            <p class="description">无需任何外部库 - 直接在浏览器中预览Markdown</p>
+        </header>
+        
+        <div class="editor-container">
+            <div class="editor-panel">
+                <div class="panel-title">Markdown输入</div>
+                <textarea id="markdown-input" placeholder="在此输入Markdown内容..."># Markdown预览器示例
+
 # 你的第一个端口破解器
 ## 一、如何使用模版
 打开你的解决方案后，你将看到如下内容
@@ -286,21 +503,98 @@ public class TestExecutable : Pathfinder.Executable.BaseExecutable
 
 
 
-
-    </textarea>
-    <button onclick="convert()">转换并显示</button>
-    <div id="html-output"></div>
+</textarea>
+            </div>
+            
+            <div class="editor-panel">
+                <div class="panel-title">实时预览</div>
+                <div id="preview"></div>
+            </div>
+        </div>
+        
+        <div class="help-text">
+            <h3>Markdown快速参考</h3>
+            <ul>
+                <li><strong>标题</strong>: <code># 一级标题</code>, <code>## 二级标题</code></li>
+                <li><strong>粗体</strong>: <code>**粗体文本**</code></li>
+                <li><strong>斜体</strong>: <code>*斜体文本*</code></li>
+                <li><strong>列表</strong>: <code>- 列表项</code></li>
+                <li><strong>代码块</strong>: 用三个反引号包围代码</li>
+                <li><strong>引用</strong>: <code>&gt; 引用文本</code></li>
+                <li><strong>链接</strong>: <code>[链接文本](URL)</code></li>
+                <li><strong>图片</strong>: <code>![替代文本](图片URL)</code></li>
+            </ul>
+        </div>
+    </div>
 
     <script>
-    function convert() {
-        // 3. 获取输入并转换
-        const markdownText = document.getElementById('markdown-input').value;
-        const htmlText = marked.parse(markdownText); // 使用marked库进行转换
-        // 将转换后的HTML显示出来
-        document.getElementById('html-output').innerHTML = htmlText;
-    }
-    // 页面加载后自动转换一次
-    convert();
+        // Markdown解析函数
+        function parseMarkdown(markdown) {
+            // 替换标题
+            markdown = markdown.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            markdown = markdown.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            markdown = markdown.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            
+            // 替换粗体和斜体
+            markdown = markdown.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+            markdown = markdown.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+            
+            // 替换无序列表
+            markdown = markdown.replace(/^\s*[-*] (.*$)/gim, '<li>$1</li>');
+            markdown = markdown.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+            
+            // 替换代码块
+            markdown = markdown.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+            
+            // 替换内联代码
+            markdown = markdown.replace(/`(.*?)`/g, '<code>$1</code>');
+            
+            // 替换引用
+            markdown = markdown.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            // 替换链接
+            markdown = markdown.replace(/\[([^\[]+)\]\(([^\)]+)\)/g, '<a href="$2">$1</a>');
+            
+            // 替换图片
+            markdown = markdown.replace(/!\[([^\[]+)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1">');
+            
+            // 替换段落
+            markdown = markdown.replace(/\n\n/g, '</p><p>');
+            markdown = '<p>' + markdown + '</p>';
+            
+            // 替换换行符
+            markdown = markdown.replace(/\n/g, '<br>');
+            
+            return markdown;
+        }
+        
+        // 获取DOM元素
+        const markdownInput = document.getElementById('markdown-input');
+        const preview = document.getElementById('preview');
+        
+        // 初始渲染
+        preview.innerHTML = parseMarkdown(markdownInput.value);
+        
+        // 监听输入变化
+        markdownInput.addEventListener('input', function() {
+            preview.innerHTML = parseMarkdown(this.value);
+        });
+        
+        // 添加键盘快捷键
+        markdownInput.addEventListener('keydown', function(e) {
+            // 支持Tab键缩进
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                
+                // 插入Tab字符
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                
+                // 恢复光标位置
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
     </script>
 </body>
 </html>
