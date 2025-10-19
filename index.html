@@ -1,355 +1,114 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>纯JavaScript Markdown预览器</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .description {
-            font-size: 1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .editor-container {
-            display: flex;
-            flex-direction: column;
-            height: 70vh;
-        }
-        
-        @media (min-width: 768px) {
-            .editor-container {
-                flex-direction: row;
-            }
-        }
-        
-        .editor-panel {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid #e1e4e8;
-            overflow: auto;
-        }
-        
-        #markdown-input {
-            width: 100%;
-            height: 100%;
-            padding: 15px;
-            border: none;
-            resize: none;
-            font-family: monospace;
-            font-size: 16px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        
-        #markdown-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #3498db;
-        }
-        
-        #preview {
-            padding: 15px;
-            overflow: auto;
-            background-color: white;
-            border-radius: 5px;
-        }
-        
-        /* Markdown样式 */
-        #preview h1, #preview h2, #preview h3 {
-            margin-top: 1.5em;
-            margin-bottom: 0.8em;
-            color: #2c3e50;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.3em;
-        }
-        
-        #preview h1 { font-size: 2em; }
-        #preview h2 { font-size: 1.7em; }
-        #preview h3 { font-size: 1.4em; }
-        
-        #preview p {
-            margin-bottom: 1em;
-        }
-        
-        #preview strong {
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        
-        #preview em {
-            font-style: italic;
-            color: #3498db;
-        }
-        
-        #preview ul, #preview ol {
-            margin-left: 20px;
-            margin-bottom: 1em;
-        }
-        
-        #preview li {
-            margin-bottom: 0.5em;
-        }
-        
-        #preview code {
-            background-color: #f8f9fa;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-        
-        #preview pre {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 15px;
-            border-radius: 5px;
-            overflow: auto;
-            margin: 1em 0;
-        }
-        
-        #preview blockquote {
-            border-left: 4px solid #3498db;
-            padding-left: 15px;
-            margin: 1em 0;
-            color: #7f8c8d;
-        }
-        
-        #preview a {
-            color: #2980b9;
-            text-decoration: none;
-        }
-        
-        #preview a:hover {
-            text-decoration: underline;
-        }
-        
-        #preview img {
-            max-width: 100%;
-            margin: 1em 0;
-            border-radius: 5px;
-        }
-        
-        .panel-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-        }
-        
-        .panel-title::before {
-            content: "•";
-            margin-right: 8px;
-            color: #3498db;
-        }
-        
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, #e1e4e8, transparent);
-            margin: 10px 0;
-        }
-        
-        .help-text {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-size: 0.9em;
-            color: #7f8c8d;
-        }
-        
-        .help-text h3 {
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .help-text ul {
-            margin-left: 20px;
-        }
-        
-        .help-text li {
-            margin-bottom: 8px;
-        }
-        
-        .help-text code {
-            background-color: #e1e4e8;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>纯JavaScript Markdown预览器</h1>
-            <p class="description">无需任何外部库 - 直接在浏览器中预览Markdown</p>
-        </header>
-        
-        <div class="editor-container">
-            <div class="editor-panel">
-                <div class="panel-title">Markdown输入</div>
-                <textarea id="markdown-input" placeholder="在此输入Markdown内容..."># Markdown预览器示例
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="_0"></a>你的第一个端口破解器</h1>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="_1"></a>一、如何使用模版</h2>
+<p class="has-line-data" data-line-start="2" data-line-end="3">打开你的解决方案后，你将看到如下内容</p>
+<pre><code class="has-line-data" data-line-start="4" data-line-end="23" class="language-cs"><span class="hljs-keyword">using</span> BepInEx;
+<span class="hljs-keyword">using</span> BepInEx.Hacknet;
 
-# 你的第一个端口破解器
-## 一、如何使用模版
-打开你的解决方案后，你将看到如下内容
-```cs
-using BepInEx;
-using BepInEx.Hacknet;
-
-namespace HacknetPluginTemplate;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">HacknetPluginTemplate</span>;
 
 [BepInPlugin(ModGUID, ModName, ModVer)]
-public class HacknetPluginTemplate : HacknetPlugin
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HacknetPluginTemplate</span> : <span class="hljs-title">HacknetPlugin</span>
 {
-    public const string ModGUID = "com.Windows10CE.Template";
-    public const string ModName = "If you leave these the same, I will kill you.";
-    public const string ModVer = "1.0.0";
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.Windows10CE.Template"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"If you leave these the same, I will kill you."</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
 
-    public override bool Load()
-    {
-        return true;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
     }
 }
 
-```
-你需要修改其中的 **MODGUID** **ModName** **ModVer**和开头的类名，同时添加一些引用库这里我提供了一个示例：
-```cs
-using BepInEx;
-using BepInEx.Hacknet;
-using Pathfinder;
-using Hacknet;
+</code></pre>
+<p class="has-line-data" data-line-start="23" data-line-end="24">你需要修改其中的 <strong>MODGUID</strong> <strong>ModName</strong> <strong>ModVer</strong>和开头的类名，同时添加一些引用库这里我提供了一个示例：</p>
+<pre><code class="has-line-data" data-line-start="25" data-line-end="50" class="language-cs"><span class="hljs-keyword">using</span> BepInEx;
+<span class="hljs-keyword">using</span> BepInEx.Hacknet;
+<span class="hljs-keyword">using</span> Pathfinder;
+<span class="hljs-keyword">using</span> Hacknet;
 
-namespace ASimpleMod;//命名空间，没啥用，可以不写。写了记得在跨文档使用函数的时候using你的命名空间。
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ASimpleMod</span>;<span class="hljs-comment">//命名空间，没啥用，可以不写。写了记得在跨文档使用函数的时候using你的命名空间。</span>
 
 [BepInPlugin(ModGUID, ModName, ModVer)]
-public class TestMod : HacknetPlugin
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestMod</span> : <span class="hljs-title">HacknetPlugin</span>
 {
-    public const string ModGUID = "com.whydoyouthinksomeonewillfoundthis.test";
-    public const string ModName = "TestMod";
-    public const string ModVer = "1.0.0";
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.whydoyouthinksomeonewillfoundthis.test"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"TestMod"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
 
-    public override bool Load()//后文我们会简称为 “主文件的Load函数”
-    {
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)<span class="hljs-comment">//后文我们会简称为 “主文件的Load函数”</span>
+    </span>{
         
-        Console.ForegroundColor = ConsoleColor.Cyan;//设置颜色
-        Console.WriteLine("TestMod Load Finished!");//cmd终端输出文字
-        Console.ResetColor();//重置颜色
-        os.write("HERE!")
-        return true;
+        Console.ForegroundColor = ConsoleColor.Cyan;<span class="hljs-comment">//设置颜色</span>
+        Console.WriteLine(<span class="hljs-string">"TestMod Load Finished!"</span>);<span class="hljs-comment">//cmd终端输出文字</span>
+        Console.ResetColor();<span class="hljs-comment">//重置颜色</span>
+        os.write(<span class="hljs-string">"HERE!"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
     }
 }
-```
-按下CTRL+SHIFT+B组合按键观察控制台输出，你就可以在这个路径下找到编译好的mod文件了（.dll） 
+</code></pre>
+<p class="has-line-data" data-line-start="50" data-line-end="51">按下CTRL+SHIFT+B组合按键观察控制台输出，你就可以在这个路径下找到编译好的mod文件了（.dll）</p>
+<ul>
+<li class="has-line-data" data-line-start="52" data-line-end="54"><strong>.\bin\Debug\net472</strong></li>
+</ul>
+<p class="has-line-data" data-line-start="54" data-line-end="55">现在，复制这个dll文件到你的测试拓展下面，新建一个文件夹命名为plugins然后把你的dll放进去。</p>
+<p class="has-line-data" data-line-start="56" data-line-end="57">运行HacknetPathfinder.exe并选择你的拓展打开，你应该就能看见你的Hacknet打开的CMD终端输出了一行<strong>TestMod Load Finished!</strong></p>
+<p class="has-line-data" data-line-start="58" data-line-end="59">游戏内终端输出了一行<strong>HERE!</strong></p>
+<h2 class="code-line" data-line-start=60 data-line-end=61 ><a id="EXE_60"></a>二、你的第一个EXE和自定义端口</h2>
+<p class="has-line-data" data-line-start="61" data-line-end="62">PS：由于篇幅有限，我们只会对需要了解的C#语法进行解释，剩余部分不做过多展开。</p>
+<h3 class="code-line" data-line-start=62 data-line-end=63 ><a id="1EXE_62"></a>1.注册端口和EXE</h3>
+<p class="has-line-data" data-line-start="63" data-line-end="64">按下<strong>CTRL+SHIFT+A</strong>新建一个.cs文件，删除全部内容。然后复制粘贴头部using开始。</p>
+<p class="has-line-data" data-line-start="65" data-line-end="67">(虽然看起来臃肿，但是至少不会因为少个using多找一次bug<br>
+导致红温。)</p>
+<pre><code class="has-line-data" data-line-start="68" data-line-end="88" class="language-csharp"><span class="hljs-keyword">using</span> BepInEx;
+<span class="hljs-keyword">using</span> HarmonyLib;
+<span class="hljs-keyword">using</span> Hacknet;
+<span class="hljs-keyword">using</span> Microsoft.Xna.Framework;
+<span class="hljs-keyword">using</span> Microsoft.Xna.Framework.Graphics;
+<span class="hljs-keyword">using</span> Pathfinder.Action;
+<span class="hljs-keyword">using</span> Pathfinder.Administrator;
+<span class="hljs-keyword">using</span> Pathfinder.Util;
+<span class="hljs-keyword">using</span> Pathfinder.Daemon;
+<span class="hljs-keyword">using</span> Pathfinder.GUI;
+<span class="hljs-keyword">using</span> Pathfinder.Mission;
+<span class="hljs-keyword">using</span> Pathfinder.Util.XML;
+<span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.IO;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> Pathfinder;
+<span class="hljs-keyword">using</span> Hacknet.Extensions;
+<span class="hljs-keyword">using</span> BepInEx.Hacknet;
+<span class="hljs-keyword">using</span> System.Diagnostics;
+</code></pre>
+<p class="has-line-data" data-line-start="89" data-line-end="90">通过修改主文件Load函数，注册一个端口和一个EXE</p>
+<pre><code class="has-line-data" data-line-start="91" data-line-end="118" class="language-csharp"><span class="hljs-keyword">using</span> BepInEx;
+<span class="hljs-keyword">using</span> BepInEx.Hacknet;
+<span class="hljs-keyword">using</span> Pathfinder;
+<span class="hljs-keyword">using</span> Hacknet;
 
-- **.\bin\Debug\net472** 
-
-现在，复制这个dll文件到你的测试拓展下面，新建一个文件夹命名为plugins然后把你的dll放进去。
-
-运行HacknetPathfinder.exe并选择你的拓展打开，你应该就能看见你的Hacknet打开的CMD终端输出了一行**TestMod Load Finished!**
-
-游戏内终端输出了一行**HERE!**
-
-## 二、你的第一个EXE和自定义端口
-PS：由于篇幅有限，我们只会对需要了解的C#语法进行解释，剩余部分不做过多展开。
-### 1.注册端口和EXE
-按下**CTRL+SHIFT+A**新建一个.cs文件，删除全部内容。然后复制粘贴头部using开始。
-
-(虽然看起来臃肿，但是至少不会因为少个using多找一次bug
-导致红温。)
-```csharp
-using BepInEx;
-using HarmonyLib;
-using Hacknet;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Action;
-using Pathfinder.Administrator;
-using Pathfinder.Util;
-using Pathfinder.Daemon;
-using Pathfinder.GUI;
-using Pathfinder.Mission;
-using Pathfinder.Util.XML;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using Pathfinder;
-using Hacknet.Extensions;
-using BepInEx.Hacknet;
-using System.Diagnostics;
-```
-
-通过修改主文件Load函数，注册一个端口和一个EXE
-```csharp
-using BepInEx;
-using BepInEx.Hacknet;
-using Pathfinder;
-using Hacknet;
-
-namespace ASimpleMod;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ASimpleMod</span>;
 
 [BepInPlugin(ModGUID, ModName, ModVer)]
-public class TestMod : HacknetPlugin
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestMod</span> : <span class="hljs-title">HacknetPlugin</span>
 {
-    public const string ModGUID = "com.whydoyouthinksomeonewillfoundthis.test";
-    public const string ModName = "TestMod";
-    public const string ModVer = "1.0.0";
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModGUID = <span class="hljs-string">"com.whydoyouthinksomeonewillfoundthis.test"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModName = <span class="hljs-string">"TestMod"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModVer = <span class="hljs-string">"1.0.0"</span>;
 
-    public override bool Load()
-    {
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>)
+    </span>{
         
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("TestMod Load Finished!");
-        Console.ResetColor();//重置颜色
-        Pathfinder.Port.PortManager.RegisterPort("EntechPort","Entech","1270")//协议，probe界面显示的名称，端口号
-        Pathfinder.Executable.ExecutableManager.RegisterExecutable<EntechPortExploit>("#EnTechPortExploit#");//<>内部填写你的函数名，后面的是自替换符。
-        return true;
+        Console.WriteLine(<span class="hljs-string">"TestMod Load Finished!"</span>);
+        Console.ResetColor();<span class="hljs-comment">//重置颜色</span>
+        Pathfinder.Port.PortManager.RegisterPort(<span class="hljs-string">"EntechPort"</span>,<span class="hljs-string">"Entech"</span>,<span class="hljs-string">"1270"</span>)<span class="hljs-comment">//协议，probe界面显示的名称，端口号</span>
+        Pathfinder.Executable.ExecutableManager.RegisterExecutable&lt;EntechPortExploit&gt;(<span class="hljs-string">"#EnTechPortExploit#"</span>);<span class="hljs-comment">//&lt;&gt;内部填写你的函数名，后面的是自替换符。</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
     }
 }
 
-```
-
-
-在新建的文件中添加如下内容定义一个EXE
-
-```csharp
-using BepInEx;
+</code></pre>
+<p class="has-line-data" data-line-start="120" data-line-end="121">在新建的文件中添加如下内容定义一个EXE</p>
+<pre><code class="has-line-data" data-line-start="123" data-line-end="171" class="language-csharp">using BepInEx;
 using HarmonyLib;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -396,23 +155,19 @@ public class TestExecutable : Pathfinder.Executable.BaseExecutable
         lifetime += t;
     }
 }
-```
-### 2.编写EXE功能
-首先，我们需要设计一个好他的底层代码逻辑。
-
-一个端口破解器理论上的过程应该是这样子的：
-
-**运行EXE->检测是否有该端口并获取端口号&检查是否提供了正确的端口号->检查是否需要额外的要求（如额外端口破解需求）->花里胡哨的动画特效->打开端口->自动退出/手动Kill/保持运行**
-
-那么，我们先不管那些花里胡哨的动画和什么额外的端口需求和整活效果（比如SSL需要其他端口开启，TempestGadgets的Sig32破解器会随机打开或者关闭端口或防火墙或代理），我们先做最基础的实现。
-
-- 1.消耗时间设置为20
-- 2.exe在ram栏会显示进度
-- 3.自动退出
-
-首先，对于消耗时间我们在 **Update()** 中循环检测lifetime。然后同时实时更新 **Draw()** 内部的绘制倒计时。最后开启端口。
-```csharp
-using BepInEx;
+</code></pre>
+<h3 class="code-line" data-line-start=171 data-line-end=172 ><a id="2EXE_171"></a>2.编写EXE功能</h3>
+<p class="has-line-data" data-line-start="172" data-line-end="173">首先，我们需要设计一个好他的底层代码逻辑。</p>
+<p class="has-line-data" data-line-start="174" data-line-end="175">一个端口破解器理论上的过程应该是这样子的：</p>
+<p class="has-line-data" data-line-start="176" data-line-end="177"><strong>运行EXE-&gt;检测是否有该端口并获取端口号&amp;检查是否提供了正确的端口号-&gt;检查是否需要额外的要求（如额外端口破解需求）-&gt;花里胡哨的动画特效-&gt;打开端口-&gt;自动退出/手动Kill/保持运行</strong></p>
+<p class="has-line-data" data-line-start="178" data-line-end="179">那么，我们先不管那些花里胡哨的动画和什么额外的端口需求和整活效果（比如SSL需要其他端口开启，TempestGadgets的Sig32破解器会随机打开或者关闭端口或防火墙或代理），我们先做最基础的实现。</p>
+<ul>
+<li class="has-line-data" data-line-start="180" data-line-end="181">1.消耗时间设置为20</li>
+<li class="has-line-data" data-line-start="181" data-line-end="182">2.exe在ram栏会显示进度</li>
+<li class="has-line-data" data-line-start="182" data-line-end="184">3.自动退出</li>
+</ul>
+<p class="has-line-data" data-line-start="184" data-line-end="185">首先，对于消耗时间我们在 <strong>Update()</strong> 中循环检测lifetime。然后同时实时更新 <strong>Draw()</strong> 内部的绘制倒计时。最后开启端口。</p>
+<pre><code class="has-line-data" data-line-start="186" data-line-end="268" class="language-csharp">using BepInEx;
 using HarmonyLib;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -454,7 +209,7 @@ public class TestExecutable : Pathfinder.Executable.BaseExecutable
             return;//返回
         }
         netPort = targetComputer.GetDisplayPortNumberFromCodePort(1270);//从目标计算机上得到端口号为1270的端口
-        if (Args.Length < 2 || !Int32.TryParse(Args[1], out int port) || port != netPort)
+        if (Args.Length &lt; 2 || !Int32.TryParse(Args[1], out int port) || port != netPort)
         /*这个条件在以下任一情况下会返回 true：
 
           参数不足（少于2个）
@@ -483,7 +238,7 @@ public class TestExecutable : Pathfinder.Executable.BaseExecutable
     {
         base.Update(t);
         lifetime += t;
-        if (lifetime >= 0.1f)
+        if (lifetime &gt;= 0.1f)
         {
           time += lifetime;
           lifetime = 0f;
@@ -493,108 +248,7 @@ public class TestExecutable : Pathfinder.Executable.BaseExecutable
     }
 
 
-```
-现在，按下**CTRL+SHIFT+B**编译，然后找到老地方的dll替换掉你拓展的第一次编译的dll。
-
-打开你的拓展的一个节点，然后在端口处添加你1270端口，并在bin里写上#EnTechPortExploit#，打开游戏运行破解器，你就可以看见效果了。
-
-（Tips：在快捷方式后面空格并添加字段使用参数启动-enabledebug -enablefc -allowextpublish就可以直接使用fh快速破解节点，使用dscan 节点ID 显示节点。）
-
-
-
-
-</textarea>
-            </div>
-            
-            <div class="editor-panel">
-                <div class="panel-title">实时预览</div>
-                <div id="preview"></div>
-            </div>
-        </div>
-        
-        <div class="help-text">
-            <h3>Markdown快速参考</h3>
-            <ul>
-                <li><strong>标题</strong>: <code># 一级标题</code>, <code>## 二级标题</code></li>
-                <li><strong>粗体</strong>: <code>**粗体文本**</code></li>
-                <li><strong>斜体</strong>: <code>*斜体文本*</code></li>
-                <li><strong>列表</strong>: <code>- 列表项</code></li>
-                <li><strong>代码块</strong>: 用三个反引号包围代码</li>
-                <li><strong>引用</strong>: <code>&gt; 引用文本</code></li>
-                <li><strong>链接</strong>: <code>[链接文本](URL)</code></li>
-                <li><strong>图片</strong>: <code>![替代文本](图片URL)</code></li>
-            </ul>
-        </div>
-    </div>
-
-    <script>
-        // Markdown解析函数
-        function parseMarkdown(markdown) {
-            // 替换标题
-            markdown = markdown.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-            markdown = markdown.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-            markdown = markdown.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-            
-            // 替换粗体和斜体
-            markdown = markdown.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
-            markdown = markdown.replace(/\*(.*?)\*/gim, '<em>$1</em>');
-            
-            // 替换无序列表
-            markdown = markdown.replace(/^\s*[-*] (.*$)/gim, '<li>$1</li>');
-            markdown = markdown.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
-            
-            // 替换代码块
-            markdown = markdown.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-            
-            // 替换内联代码
-            markdown = markdown.replace(/`(.*?)`/g, '<code>$1</code>');
-            
-            // 替换引用
-            markdown = markdown.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
-            
-            // 替换链接
-            markdown = markdown.replace(/\[([^\[]+)\]\(([^\)]+)\)/g, '<a href="$2">$1</a>');
-            
-            // 替换图片
-            markdown = markdown.replace(/!\[([^\[]+)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1">');
-            
-            // 替换段落
-            markdown = markdown.replace(/\n\n/g, '</p><p>');
-            markdown = '<p>' + markdown + '</p>';
-            
-            // 替换换行符
-            markdown = markdown.replace(/\n/g, '<br>');
-            
-            return markdown;
-        }
-        
-        // 获取DOM元素
-        const markdownInput = document.getElementById('markdown-input');
-        const preview = document.getElementById('preview');
-        
-        // 初始渲染
-        preview.innerHTML = parseMarkdown(markdownInput.value);
-        
-        // 监听输入变化
-        markdownInput.addEventListener('input', function() {
-            preview.innerHTML = parseMarkdown(this.value);
-        });
-        
-        // 添加键盘快捷键
-        markdownInput.addEventListener('keydown', function(e) {
-            // 支持Tab键缩进
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = this.selectionStart;
-                const end = this.selectionEnd;
-                
-                // 插入Tab字符
-                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
-                
-                // 恢复光标位置
-                this.selectionStart = this.selectionEnd = start + 4;
-            }
-        });
-    </script>
-</body>
-</html>
+</code></pre>
+<p class="has-line-data" data-line-start="268" data-line-end="269">现在，按下<strong>CTRL+SHIFT+B</strong>编译，然后找到老地方的dll替换掉你拓展的第一次编译的dll。</p>
+<p class="has-line-data" data-line-start="270" data-line-end="271">打开你的拓展的一个节点，然后在端口处添加你1270端口，并在bin里写上#EnTechPortExploit#，打开游戏运行破解器，你就可以看见效果了。</p>
+<p class="has-line-data" data-line-start="272" data-line-end="273">（Tips：在快捷方式后面空格并添加字段使用参数启动-enabledebug -enablefc -allowextpublish就可以直接使用fh快速破解节点，使用dscan 节点ID 显示节点。）</p>
