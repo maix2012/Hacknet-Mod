@@ -40,4 +40,4 @@ EndGlobal
 #### 现在，重命名.csproj文件为你修改后的文件名然后打开解决方案文件（.sln）。
 # 到这里，恭喜你，你已经完成了最麻烦的部分，接下来就是愉快的mod开发过程了。
 #### 点击这里开始你的第一个破解器开发吧！
-[你的第一个破解器](https://github.com/maix2012/Hacknet-Mod/blob/main/%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E7%A0%B4%E8%A7%A3%E5%99%A8.md#%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E7%A0%B4%E8%A7%A3%E5%99%A8)
+[你的第一个破解器](./你的第一个破解器.md)
